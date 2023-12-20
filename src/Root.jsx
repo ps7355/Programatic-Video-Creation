@@ -1,10 +1,11 @@
-import { AbsoluteFill, Composition, staticFile,interpolate,useCurrentFrame, Sequence } from "remotion";
+import { AbsoluteFill, Composition, staticFile,interpolate,useCurrentFrame, Sequence, Series } from "remotion";
 import { Img } from "remotion";
-import { StaticFile,useVideoConfig } from "remotion";
+import { StaticFile,useVideoConfig, Series } from "remotion";
 import { Audio } from "remotion";
 import { linearTiming, TransitionSeries } from "@remotion/transitions";
 import { clockWipe } from "@remotion/transitions/clock-wipe";
 import "./font.css";
+import "animate.css";
 
 
 
@@ -50,10 +51,10 @@ const composition = () => {
       </Sequence>
 
       <Sequence from={60}>
-      <StartingText/>
+      <StartingText1/>
       </Sequence>
       <Sequence from={120}>
-        <Demo/>
+        <StartingText2/>
       </Sequence>
     </AbsoluteFill>
     </Sequence>
@@ -131,7 +132,7 @@ const ClickToStartTransition = ()=>{
   );
 }
 
-const StartingText = () => {
+const StartingText1 = () => {
   const frame = useCurrentFrame();
   const s1 = interpolate(frame, [0, 7], [0.36, 1], { extrapolateRight: "clamp" });
   const s2 = interpolate(frame, [0, 30], [0, 400], { extrapolateRight: "clamp" });
@@ -167,29 +168,66 @@ const StartingText = () => {
     <Sequence from={50} durationInFrames={10}>
     <div style={textstyle4}>YOU?</div>
     </Sequence>
-    {/* <Sequence from={60}>
-      <div style={textstyle5}>FINE?</div>
-    </Sequence> */}
-    {/* <Sequence>
-      <div>GOOD?</div>
-    </Sequence>
-    <Sequence>
-      <div>GREAT?</div>
-    </Sequence> */}
-    
-    </div>
+        </div>
 };
 
-const Demo=()=>{
+const StartingText2=()=>{
   const frame = useCurrentFrame();
-  const s2 = interpolate(frame, [0, 5], [0, 400], { extrapolateRight: "clamp" });
+  const s1 = interpolate(frame, [0, 4], [0, 400], { extrapolateRight: "clamp" });
+  const s2 = interpolate(frame, [0, 22], [900, 340],{extrapolateRight:"clamp"});
+  const s3 = interpolate(frame, [0, 30], [0, -400],{extrapolateRight:"clamp"});
+  const s4 = interpolate(frame, [40, 45], [1.5, 1],{extrapolateRight:"clamp"});
+ 
   
-  const textstyle5 = { marginTop:"43%",transform: `translateX(${s2}px)`,alignItems: "center", justifyContent: "center", backgroundColor: 'white', color: 'black', fontSize: 110, fontFamily:"inter",fontWeight:"bolder"};   
-  return <div>
-    <Sequence from={0}>
-      <div style={textstyle5}>FINE?</div>
-    </Sequence>
-  </div>
+  
+  
+  const textstyle = {  marginTop: "43%",transform: `translateX(${s1}px)`,alignItems: "center", justifyContent: "center", color: 'white', fontSize: 110, fontFamily:"inter",fontWeight:"bolder"}; 
+  const textstyle1 = { marginTop:"43%",transform: `translateX(${s2}px)`,alignItems: "center", justifyContent: "center", backgroundColor: 'white', color: 'black', fontSize: 110, fontFamily:"inter",fontWeight:"bolder"};     
+  const textstyle2 = { marginLeft:"32%", transform: `translateY(${s3}px)`,marginTop:"80%", fontSize: 110, fontFamily:"inter",fontWeight:"bolder",color:"white"}; 
+  const textstyle3 = {
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 110,
+              transform: `scale(${s4})`,
+              fontFamily:"inter",fontWeight:"bolder"
+            };
+  const arr=['LET ME','INTRODUCE','MYSELF','I','AM'];
+ 
+  
+  return <Series>
+    <Series.Sequence from={0} durationInFrames={15}>
+      <div style={{backgroundColor: 'black', width:"100%",height:"100%"}}>
+    <div style={textstyle}>FINE?</div>
+    </div>
+    </Series.Sequence>
+    <Series.Sequence from={16} durationInFrames={10}>
+    <div style={textstyle1}>GOOD?</div>
+    </Series.Sequence>
+    <Series.Sequence from={25} durationInFrames={15}>
+    <div style={{backgroundColor: 'black', width:"100%",height:"100%"}}>
+    <div style={textstyle2}>GREAT!</div>
+    </div>
+    </Series.Sequence>
+    {arr.map((value, index) => (
+        <Series.Sequence key={index} from={40 + index * 13} durationInFrames={13}>
+          <AbsoluteFill style={{...textstyle3, transform: `scale(${interpolate(frame, [40 + index * 13, 45 + index * 13], [1.5, 1], { extrapolateRight: "clamp" })})`,backgroundColor: index % 2 === 0 ? 'black' : 'white',color: index % 2 === 0 ? 'white' : 'black'}}>{value}</AbsoluteFill>
+        </Series.Sequence>
+      ))}
+      <Series.Sequence from={110} durationInFrames={50}>
+        {/* <AbsoluteFill style={d}>hello</AbsoluteFill> */}
+        <div className="animate__animated animate__zoomInDown" style={{letterSpacing:"30px",fontSize:100, paddingTop:"45%",color: "black", paddingLeft:"6%",fontSize: 110,fontFamily:"inter",  fontWeight:"bolder"}}>
+      SIVARANJAN
+    </div>
+      </Series.Sequence>
+        <Series.Sequence from={161} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"black"}}></AbsoluteFill></Series.Sequence>
+        <Series.Sequence from={167} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"white"}}></AbsoluteFill></Series.Sequence>
+        <Series.Sequence from={173} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"black"}}></AbsoluteFill></Series.Sequence>
+        <Series.Sequence from={179} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"white"}}></AbsoluteFill></Series.Sequence>
+      
+  </Series>
+   
+   
+  
 }
 
 
