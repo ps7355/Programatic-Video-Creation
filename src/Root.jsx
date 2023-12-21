@@ -7,9 +7,15 @@ import { clockWipe} from "@remotion/transitions/clock-wipe";
 import { slide } from "@remotion/transitions/slide";
 import "./font.css";
 import "animate.css";
+import Lottie from "lottie-react";
 import { useVideoConfig, interpolate, spring } from 'remotion';
+import animationData  from "./ani1.json"
+import ThankYou from "./thankyoulottie";
 import { wipe } from "@remotion/transitions/wipe";
 import { fade } from "@remotion/transitions/fade";
+import { flip } from "@remotion/transitions/flip";
+import Linkdein from "./linkdien";
+ 
 
 
 
@@ -19,7 +25,7 @@ export const RemotionVideo = () => {
     <Composition
       id="Myvideo"
       component={composition}
-      durationInFrames={800}
+      durationInFrames={1200}
       fps={30}
       height={1080}
       width={1080}
@@ -231,7 +237,7 @@ const StartingText2=()=>{
     </AbsoluteFill>
       </Series.Sequence>
       
-      <Series.Sequence from={118} durationInFrames={42}>
+      <Series.Sequence from={118} durationInFrames={30}>
         <AbsoluteFill style={{paddingLeft:"3%",display:"flex",alignItems:"center",letterSpacing:`${s5}px`,fontSize:100, paddingTop:"45%",color: "white",backgroundColor:"black",fontSize: 110,fontFamily:"inter",  fontWeight:"bolder",}}>
       SIVARANJAN
     </AbsoluteFill>
@@ -274,38 +280,127 @@ const StartingText3=()=>{
   </Series.Sequence>
 </Series>
 }
+
 const StartingText4 = () => {
+  const arr=["C++","C","PYTHON","JAVASCRIPT","DART","HTML","CSS","REACT.JS","NEXT.JS","FLUTTER","REMOTION","CHAKRA UI","AWS","FIREBASE","SUPBASE","GIT"];
+  const arr1=["WHATSAPP CLONE APP","FULLSTACK MOVIE BOOKING APPLICATION", "CHATGPT BROWSER EXTENSINON","PROGRAMMATIC VIDEO CREATION"];
+  const arr2=["NPTEL JOY OF COMPUTING USING PYTHON","AWS Academy Machine Learning Foundations","CISCO Network Device and Configuration","CISCO Network Basics"]
   const frame = useCurrentFrame();
   console.log(frame);
-  return  <TransitionSeries>
-  <TransitionSeries.Sequence durationInFrames={80}>
-  <AbsoluteFill style={{justifyContent:"center",alignItems:"center", fontFamily:"inter",fontWeight:"bolder"}}>
-<div style={{fontSize:100, color:"red",marginTop:"-7%"}}>B.TECH IN</div>
-<div style={{fontSize:100,marginTop:"5%",color: frame>10 ? "black":"white"}}>COMPUTER SCIENCE </div>
-<div style={{fontSize:100,marginTop:"5%",color: frame>20 ? "black":"white"}}> AND</div>
-<div style={{fontSize:100,marginTop:"5%",color: frame>30 ? "black":"white"}}>ENGINEERING</div>
-</AbsoluteFill>
-  </TransitionSeries.Sequence>
-  <TransitionSeries.Transition
-    presentation={wipe()}
-    timing={linearTiming({ durationInFrames: 30 })}
-  />
-  <TransitionSeries.Sequence durationInFrames={60}>
-    <AbsoluteFill style={{fontWeight:"bolder",backgroundColor:frame>82 ? "white":"black",color:frame>82 ? "black":"white",fontFamily:"inter",fontSize:110,justifyContent:"center",alignItems:"center"}}>SKILLS I HAVE</AbsoluteFill>
-  </TransitionSeries.Sequence>
-</TransitionSeries>
-    
-    {/* <Sequence from={0} durationInFrames={30}>
-    <div style={textstyle2}>HOW</div>
+  const style1={fontSize:100,justifyContent:"center",alignItems:"center",fontFamily:"inter",fontWeight:"bolder"};
+  const style2 = {
+    fontSize: 80,
+    fontFamily: "inter",
+    fontWeight: "bolder",
+    backgroundColor: "black",
+    color: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%", // Ensure full height
+    textAlign: "center", // Center-align the text horizontally
+  };
+  return (
+    <Sequence>
+      <TransitionSeries>
+        <TransitionSeries.Sequence durationInFrames={80}>
+          <AbsoluteFill style={{justifyContent:"center",alignItems:"center", fontFamily:"inter",fontWeight:"bolder"}}>
+            <div style={{fontSize:100, color:"#ff0000",marginTop:"-7%"}}>B.TECH IN</div>
+            <div style={{fontSize:100,marginTop:"5%",color: frame>10 ? "black":"white"}}>COMPUTER SCIENCE </div>
+            <div style={{fontSize:100,marginTop:"5%",color: frame>20 ? "black":"white"}}> AND</div>
+            <div style={{fontSize:100,marginTop:"5%",color: frame>30 ? "black":"white"}}>ENGINEERING</div>
+          </AbsoluteFill>
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition
+          presentation={wipe()}
+          timing={linearTiming({ durationInFrames: 30 })}
+        />
+        <TransitionSeries.Sequence durationInFrames={50}>
+          <AbsoluteFill style={{fontWeight:"bolder",backgroundColor:frame>82 ? "white":"black",color:frame>82 ? "black":"white",fontFamily:"inter",fontSize:110,justifyContent:"center",alignItems:"center"}}>SKILLS I HAVE</AbsoluteFill>
+        </TransitionSeries.Sequence>
+      </TransitionSeries>
+
+      {arr.map((value, index) => (
+        <Sequence key={index} from={100+index*15} durationInFrames={15}>
+          <AbsoluteFill style={{ ...style1,
+      backgroundColor: "black",
+      color: "white" }}>{value}</AbsoluteFill>
+        </Sequence>
+      ))}
+      <Sequence from={340} durationInFrames={20}><AbsoluteFill style={{...style1,color:"red"}}>PROJECTS</AbsoluteFill></Sequence>
+      {arr1.map((value, index) => (
+        <Sequence key={index} from={360+index*15} durationInFrames={15}>
+          <AbsoluteFill style={style2}>{value}</AbsoluteFill>
+        </Sequence>
+      ))}
+      //
+      <Sequence from={421} durationInFrames={20}><AbsoluteFill style={{...style1,color:"red"}}>CERTIFICATION</AbsoluteFill></Sequence>
+      {arr2.map((value, index) => (
+        <Sequence key={index} from={442+index*15} durationInFrames={15}>
+          <AbsoluteFill style={style2}>{value.toUpperCase()}</AbsoluteFill>
+        </Sequence>
+      ))}
+      <Sequence from={502} >
+      <TransitionSeries>
+      <TransitionSeries.Sequence durationInFrames={110}>
+      <AbsoluteFill style={{...style1,backgroundColor:"black"}}>
+          <div style={{color:"white",fontSize:120}}>THAT'S IT</div>
+          <div>
+          <Lottie style={{ height:400,width:400,marginTop:"20%",visibility:frame>530 ? "visible":"hidden"}}
+         animationData={animationData} ></Lottie>
+          </div>
+           </AbsoluteFill>
+      </TransitionSeries.Sequence>
+      <TransitionSeries.Transition
+        presentation={flip()}
+        timing={linearTiming({ durationInFrames: 30 })}
+      />
+      <TransitionSeries.Sequence durationInFrames={80}>
+      
+        <AbsoluteFill>
+        <div style={{...style1,fontSize:120,marginLeft:"36%",marginTop:"17%",marginBottom:"3%"}}>
+          STILL
+        </div>
+        <div style={{...style1,fontSize:120,marginLeft:"23%",marginBottom:"3%",color:frame>583 ? "black":"white"}}>
+          LONG WAY
+        </div>
+        <div style={{...style1,fontSize:120,marginLeft:"42%",marginBottom:"3%",color:frame>593 ? "black":"white"}}>
+          TO
+        </div>
+        <div style={{...style1,fontSize:120,marginLeft:"42%",marginBottom:"3%",color:frame>593 ? "black":"white"}}>
+          GO
+        </div>
+        </AbsoluteFill>
+      </TransitionSeries.Sequence>
+    </TransitionSeries>
+      </Sequence>
+      
+      <Sequence from={663} durationInFrames={60}>
+        <AbsoluteFill>
+          <ThankYou/>
+        </AbsoluteFill>
+      </Sequence>
+      <Sequence from={722} durationInFrames={45}>
+        <AbsoluteFill style={{...style1,backgroundColor:"black",color:"white"}}>
+          FOLLOW ME ON
+        </AbsoluteFill>
+      </Sequence>
+      <Sequence from={767} durationInFrames={60}>
+        <AbsoluteFill style={{...style1,backgroundColor:"black",color:"white"}}>
+          <div>
+            <div style={{marginTop:"-30%"}}>
+              <Linkdein/>
+            </div>
+          <div>
+          Sivaranjan P G
+          </div>
+          </div>
+        </AbsoluteFill>
+      </Sequence>
     </Sequence>
-    <Sequence from={30} durationInFrames={20}>
-    <div style={textstyle3}>ARE</div>
-    </Sequence>
-    <Sequence from={50} durationInFrames={10}>
-    <div style={textstyle4}>YOU?</div>
-    </Sequence> */}
-        
+  );
 };
+
 
 
 
