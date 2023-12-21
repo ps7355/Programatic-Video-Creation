@@ -23,7 +23,7 @@ import Linkdein from "./linkdien";
 export const RemotionVideo = () => {
   return (
     <Composition
-      id="Myvideo"
+      id="HelloWorld"
       component={composition}
       durationInFrames={1200}
       fps={30}
