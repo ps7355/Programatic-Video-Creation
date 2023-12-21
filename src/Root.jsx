@@ -3,9 +3,14 @@ import { Img } from "remotion";
 import { StaticFile,useVideoConfig, Series } from "remotion";
 import { Audio } from "remotion";
 import { linearTiming, TransitionSeries } from "@remotion/transitions";
-import { clockWipe } from "@remotion/transitions/clock-wipe";
+import { clockWipe} from "@remotion/transitions/clock-wipe";
+import { slide } from "@remotion/transitions/slide";
 import "./font.css";
 import "animate.css";
+import { useVideoConfig, interpolate, spring } from 'remotion';
+import { wipe } from "@remotion/transitions/wipe";
+import { fade } from "@remotion/transitions/fade";
+
 
 
 
@@ -55,6 +60,12 @@ const composition = () => {
       </Sequence>
       <Sequence from={120}>
         <StartingText2/>
+      </Sequence>
+      <Sequence from={304}>
+        <StartingText3/>
+      </Sequence>
+      <Sequence from={354}>
+        <StartingText4/>
       </Sequence>
     </AbsoluteFill>
     </Sequence>
@@ -177,6 +188,7 @@ const StartingText2=()=>{
   const s2 = interpolate(frame, [0, 22], [900, 340],{extrapolateRight:"clamp"});
   const s3 = interpolate(frame, [0, 30], [0, -400],{extrapolateRight:"clamp"});
   const s4 = interpolate(frame, [40, 45], [1.5, 1],{extrapolateRight:"clamp"});
+  const s5 = interpolate(frame, [110, 130], [0, 40],{extrapolateRight:"clamp"},{easing:"Easing.ease"});
  
   
   
@@ -209,26 +221,91 @@ const StartingText2=()=>{
     </div>
     </Series.Sequence>
     {arr.map((value, index) => (
-        <Series.Sequence key={index} from={40 + index * 13} durationInFrames={13}>
+        <Series.Sequence key={index} from={40 + index * 15} durationInFrames={15}>
           <AbsoluteFill style={{...textstyle3, transform: `scale(${interpolate(frame, [40 + index * 13, 45 + index * 13], [1.5, 1], { extrapolateRight: "clamp" })})`,backgroundColor: index % 2 === 0 ? 'black' : 'white',color: index % 2 === 0 ? 'white' : 'black'}}>{value}</AbsoluteFill>
         </Series.Sequence>
       ))}
-      <Series.Sequence from={110} durationInFrames={50}>
-        {/* <AbsoluteFill style={d}>hello</AbsoluteFill> */}
-        <div className="animate__animated animate__zoomInDown" style={{letterSpacing:"30px",fontSize:100, paddingTop:"45%",color: "black", paddingLeft:"6%",fontSize: 110,fontFamily:"inter",  fontWeight:"bolder"}}>
+       <Series.Sequence from={110} durationInFrames={8}>
+        <AbsoluteFill style={{letterSpacing:"2px",paddingLeft:"3%",display:"flex",alignItems:"center",fontSize:100, paddingTop:"45%",backgroundColor:"white",color: "black",fontSize: 110,fontFamily:"inter",  fontWeight:"bolder",}}>
       SIVARANJAN
-    </div>
+    </AbsoluteFill>
       </Series.Sequence>
-        <Series.Sequence from={161} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"black"}}></AbsoluteFill></Series.Sequence>
-        <Series.Sequence from={167} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"white"}}></AbsoluteFill></Series.Sequence>
-        <Series.Sequence from={173} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"black"}}></AbsoluteFill></Series.Sequence>
-        <Series.Sequence from={179} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"white"}}></AbsoluteFill></Series.Sequence>
       
+      <Series.Sequence from={118} durationInFrames={42}>
+        <AbsoluteFill style={{paddingLeft:"3%",display:"flex",alignItems:"center",letterSpacing:`${s5}px`,fontSize:100, paddingTop:"45%",color: "white",backgroundColor:"black",fontSize: 110,fontFamily:"inter",  fontWeight:"bolder",}}>
+      SIVARANJAN
+    </AbsoluteFill>
+      </Series.Sequence>
+        <Series.Sequence from={161} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"white"}}></AbsoluteFill></Series.Sequence>
+        <Series.Sequence from={167} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"black"}}></AbsoluteFill></Series.Sequence>
+        <Series.Sequence from={173} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"white"}}></AbsoluteFill></Series.Sequence>
+        <Series.Sequence from={179} durationInFrames={5}><AbsoluteFill style={{width:"100%",height:"100%", backgroundColor:"black"}}></AbsoluteFill></Series.Sequence>
+        
   </Series>
    
    
   
 }
+//ddd
+const StartingText3=()=>{
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const s1 = interpolate(frame, [0, 30], [0, 190],{extrapolateRight:"clamp"});
+  const s2 = interpolate(frame, [0, 30], [-55, -27.8],{extrapolateRight:"clamp"});
+  const textstyle = {  marginTop: "58%",transform: `translateX(${s1}px)`,alignItems: "center", justifyContent: "center", color: frame>30 ? "white" : "black", fontSize: 80, fontFamily:"inter",fontWeight:"bolder"}; 
+  const textstyle1 = {  marginLeft:"15%",marginTop: `${s2}%`,alignItems: "center", justifyContent: "center", color: frame>30 ? "white" : "black", fontSize: 160, fontFamily:"inter",fontWeight:"bolder"}; 
+  const textstyle2 = {  marginLeft:"23%",marginTop: `${s2}%`,alignItems: "center", justifyContent: "center", color: frame>30 ? "white" : "black",fontSize: 80, fontFamily:"inter",fontWeight:"bolder"}; 
+ 
+
+
+  return <Series>
+  <Series.Sequence from={0} durationInFrames={50}>
+    <div style={{ backgroundColor: frame>30 ? "black" : "white", width: "100%", height: "100%" }}>
+      <Series.Sequence from={0} durationInFrames={30}>
+        <div style={textstyle}>I'M 19 YEARS OLD</div>
+      </Series.Sequence>
+      <Series.Sequence from={30} durationInFrames={30}>
+        <div style={textstyle1}>COLLEGE</div>
+      </Series.Sequence>
+      <Series.Sequence from={60} durationInFrames={30}>
+        <div style={textstyle2}>CURRENTLY IN</div>
+      </Series.Sequence>
+    </div>
+  </Series.Sequence>
+</Series>
+}
+const StartingText4 = () => {
+  const frame = useCurrentFrame();
+  console.log(frame);
+  return  <TransitionSeries>
+  <TransitionSeries.Sequence durationInFrames={80}>
+  <AbsoluteFill style={{justifyContent:"center",alignItems:"center", fontFamily:"inter",fontWeight:"bolder"}}>
+<div style={{fontSize:100, color:"red",marginTop:"-7%"}}>B.TECH IN</div>
+<div style={{fontSize:100,marginTop:"5%",color: frame>10 ? "black":"white"}}>COMPUTER SCIENCE </div>
+<div style={{fontSize:100,marginTop:"5%",color: frame>20 ? "black":"white"}}> AND</div>
+<div style={{fontSize:100,marginTop:"5%",color: frame>30 ? "black":"white"}}>ENGINEERING</div>
+</AbsoluteFill>
+  </TransitionSeries.Sequence>
+  <TransitionSeries.Transition
+    presentation={wipe()}
+    timing={linearTiming({ durationInFrames: 30 })}
+  />
+  <TransitionSeries.Sequence durationInFrames={60}>
+    <AbsoluteFill style={{fontWeight:"bolder",backgroundColor:frame>82 ? "white":"black",color:frame>82 ? "black":"white",fontFamily:"inter",fontSize:110,justifyContent:"center",alignItems:"center"}}>SKILLS I HAVE</AbsoluteFill>
+  </TransitionSeries.Sequence>
+</TransitionSeries>
+    
+    {/* <Sequence from={0} durationInFrames={30}>
+    <div style={textstyle2}>HOW</div>
+    </Sequence>
+    <Sequence from={30} durationInFrames={20}>
+    <div style={textstyle3}>ARE</div>
+    </Sequence>
+    <Sequence from={50} durationInFrames={10}>
+    <div style={textstyle4}>YOU?</div>
+    </Sequence> */}
+        
+};
 
 
 

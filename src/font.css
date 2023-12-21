@@ -1,2 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter&family=Vina+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter&family=Rubik+Doodle+Shadow&family=Vina+Sans&display=swap');
+
+.scale-up-hor-left {
+	-webkit-animation: scale-up-hor-left  cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
+	        animation: scale-up-hor-left   cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
+}
+@-webkit-keyframes scale-up-hor-left {
+  0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+}
+@keyframes scale-up-hor-left {
+  0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+  }
+}
